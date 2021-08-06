@@ -2,7 +2,7 @@
 
 ## Installation
 
-  yarn add @labdigital/commercetools-federated-schema
+`yarn add @labdigital/commercetools-federated-schema`
 
 ## Usage
 
