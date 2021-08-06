@@ -1,0 +1,70 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@labdigital/commercetools-federated-schema",
+  "author": "Lab Digital",
+  "homepage": "https://github.com/labd/commercetools-federated-schema",
+  "repository": "github:labd/commercetools-federated-schema",
+  "module": "dist/commercetools-federated-schema.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/commercetools-federated-schema.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/commercetools-federated-schema.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.2",
+    "@types/node-fetch": "^2.5.12",
+    "husky": "^7.0.1",
+    "size-limit": "^5.0.2",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@graphql-tools/delegate": "^8.0.6",
+    "@graphql-tools/graphql-file-loader": "^7.0.2",
+    "@graphql-tools/load": "^7.1.2",
+    "@graphql-tools/stitch": "^8.0.7",
+    "@graphql-tools/utils": "^8.0.2",
+    "@graphql-tools/wrap": "^8.0.6",
+    "agentkeepalive": "^4.1.4",
+    "graphql": "^15.5.1",
+    "graphql-transform-federation": "^2.2.0",
+    "node-fetch": "^2.6.1"
+  }
+}
