@@ -5,6 +5,7 @@ import { HttpsAgent } from 'agentkeepalive';
 
 import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
+import { wrapSchema } from '@graphql-tools/wrap';
 
 const keepAliveAgent = new HttpsAgent();
 
@@ -51,3 +52,13 @@ export const remoteCommercetoolsSchema = loadSchemaSync(
     loaders: [new GraphQLFileLoader()],
   }
 );
+
+
+export const getWrappedSchema = (endpoint: string, transforms: any[]) => {
+  return wrapSchema({
+    schema: remoteCommercetoolsSchema,
+    transforms,
+    executor: createExecutor(endpoint),
+  });
+
+}

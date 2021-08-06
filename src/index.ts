@@ -6,9 +6,8 @@ import {
   FederationConfig,
   transformSchemaFederation,
 } from 'graphql-transform-federation';
-import { createExecutor, remoteCommercetoolsSchema } from './schema';
+import { getWrappedSchema } from './schema';
 import { resolveCartReferenceById } from './resolvers/cart';
-import { wrapSchema } from '@graphql-tools/wrap';
 
 export const createCommercetoolsSchema = ({
   endpoint,
@@ -18,17 +17,12 @@ export const createCommercetoolsSchema = ({
   extraFederationConfig,
 }: {
   endpoint: string;
-  transforms: any;
-  typeDefs: TypeSource | undefined;
-  resolvers: IResolvers | undefined | any;
-  extraFederationConfig: FederationConfig<any>;
+  transforms?: any[];
+  typeDefs?: TypeSource | undefined;
+  resolvers?: IResolvers | undefined | any;
+  extraFederationConfig?: FederationConfig<any>;
 }): GraphQLSchema => {
-  const wrappedSchema = wrapSchema({
-    schema: remoteCommercetoolsSchema,
-    transforms,
-    executor: createExecutor(endpoint),
-  });
-
+  const wrappedSchema = getWrappedSchema(endpoint, transforms || []);
   const schema = stitchSchemas({
     subschemas: [wrappedSchema],
     typeDefs,
@@ -42,6 +36,6 @@ export const createCommercetoolsSchema = ({
       keyFields: ['id'],
       resolveReference: resolveCartReferenceById,
     },
-    ...extraFederationConfig,
+    ...(extraFederationConfig || {}),
   });
 };
