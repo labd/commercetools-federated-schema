@@ -53,12 +53,10 @@ export const remoteCommercetoolsSchema = loadSchemaSync(
   }
 );
 
-
 export const getWrappedSchema = (endpoint: string, transforms: any[]) => {
   return wrapSchema({
     schema: remoteCommercetoolsSchema,
     transforms,
     executor: createExecutor(endpoint),
   });
-
-}
+};
