@@ -1,11 +1,14 @@
-import { GraphQLResolveInfo, Kind, SelectionSetNode } from 'graphql'
-import { delegateToSchema } from '@graphql-tools/delegate'
-import { WrapQuery } from '@graphql-tools/wrap'
+import { GraphQLResolveInfo, Kind, SelectionSetNode } from 'graphql';
+import { delegateToSchema } from '@graphql-tools/delegate';
+import { WrapQuery } from '@graphql-tools/wrap';
 
-export const resolveMyCustomer = async (_args: any,  context: Record<string, any>,
-  info: GraphQLResolveInfo) => {
+export const resolveMyCustomer = async (
+  _args: any,
+  context: Record<string, any>,
+  info: GraphQLResolveInfo
+) => {
   const result = await delegateToSchema({
-   schema: info.schema,
+    schema: info.schema,
     operation: 'query',
     fieldName: 'me',
     transforms: [
@@ -27,16 +30,16 @@ export const resolveMyCustomer = async (_args: any,  context: Record<string, any
                 },
               },
             ],
-          }
+          };
         },
-        (result) => {
-          return [result.customer]
+        result => {
+          return [result.customer];
         }
       ),
     ],
     info,
     context,
-  })
+  });
 
-  return result[0]
-}
+  return result[0];
+};
