@@ -8,6 +8,7 @@ import {
 } from 'graphql-transform-federation';
 import { getWrappedSchema } from './schema';
 import { resolveCartReferenceById } from './resolvers/cart';
+import { resolveMyCustomer } from './resolvers/customer';
 
 export const createCommercetoolsSchema = ({
   endpoint,
@@ -35,6 +36,9 @@ export const createCommercetoolsSchema = ({
     Cart: {
       keyFields: ['id'],
       resolveReference: resolveCartReferenceById,
+    },
+    Customer: {
+      resolveReference: resolveMyCustomer,
     },
     ...(extraFederationConfig || {}),
   });
