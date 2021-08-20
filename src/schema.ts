@@ -2,7 +2,6 @@ import { print } from 'graphql';
 import path from 'path';
 import fetch from 'node-fetch';
 import { HttpsAgent } from 'agentkeepalive';
-
 import { loadSchemaSync } from '@graphql-tools/load';
 import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
 import { wrapSchema } from '@graphql-tools/wrap';
